@@ -1,5 +1,5 @@
 # Alexandria.jl
 
-Alexandria.jl is a library of conservative utilities for
+Alexandria.jl is a conservative library of utilities for
 [Julia](https://julialang.org/).
 

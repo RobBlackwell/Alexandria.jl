@@ -1,13 +1,11 @@
 module Alexandria
 
-export skipnan
-
-greet() = print("Hello World!")
+export skipnan, db2pow, pow2db, mag2db, db2mag
 
 """
     skipnan(itr)
 
-Return an iterator over the elements in itr skipping NaN values.
+Return an iterator over the elements in `itr` skipping `NaN` values.
 
 Use `collect` to obtain an `Array` containing the non-`NaN` values in
 `itr`. Note that even if `itr` is a multidimensional array, the result
@@ -33,7 +31,32 @@ julia> collect(skipnan([1 NaN; 2 NaN]))
 
 ```
 """
-skipnan(x) = Iterators.filter(!isnan, x)
+skipnan(itr) = Iterators.filter(!isnan, itr)
+
+
+"""
+    db2pow(ydb)
+Convert decibels to power
+"""
+db2pow(ydb::Real) = 10^(ydb/10)
+
+"""
+    pow2db(y)
+Convert power to decibels.
+"""
+pow2db(y::Real) = 10log10(y)
+
+"""
+    mag2db(y)
+Convert magnitude to decibels.
+"""
+mag2db(y::Real) = 20log10(y)
+
+"""
+    db2mag(ydb)
+Convert decibels to magnitude.
+"""
+db2mag(ydb::Real) = 10^(ydb/20)
 
 
 end # module
