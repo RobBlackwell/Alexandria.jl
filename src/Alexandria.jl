@@ -1,6 +1,6 @@
 module Alexandria
 
-export skipnan, db2pow, pow2db, mag2db, db2mag
+export skipnan, db2pow, pow2db, mag2db, db2mag, member
 
 """
     skipnan(itr)
@@ -57,6 +57,15 @@ mag2db(y::Real) = 20log10(y)
 Convert decibels to magnitude.
 """
 db2mag(ydb::Real) = 10^(ydb/20)
+
+"""
+    member(needle, haystack)
+
+Returns `true` if `haystack` contains `needle`.
+"""
+function member(needle, haystack)
+    !isnothing(findfirst(x -> x == needle, haystack))
+end
 
 
 end # module
