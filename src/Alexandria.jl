@@ -1,6 +1,6 @@
 module Alexandria
 
-export skipnan, db2pow, pow2db, mag2db, db2mag, member
+export skipnan, db2pow, pow2db, mag2db, db2mag, member, findnearest, nth
 
 """
     skipnan(itr)
@@ -67,5 +67,28 @@ function member(needle, haystack)
     !isnothing(findfirst(x -> x == needle, haystack))
 end
 
+"""
+    findnearest(A::AbstractArray, t)
+
+Finds the index of the nearest value in the array `A` to the test value `t`.
+See https://discourse.julialang.org/t/findnearest-function/4143/5
+"""
+findnearest(A::AbstractArray, t) = findmin(abs.(A.-t))[2]
+
+"""
+    nth(A, n)
+
+Find the nth element of a collection
+
+```julia-repl
+
+julia> a = [(1,2,3), (2,3,4)];
+
+julia> nth.(a,2)
+2-element Array{Int64,1}:
+ 2
+ 3
+"""
+nth(A, n) = A[n]
 
 end # module
